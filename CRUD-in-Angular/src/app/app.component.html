@@ -1,0 +1,50 @@
+<div>
+  <mat-toolbar>
+    <span>ToDoList</span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="primary" (click)="openAddEditList()">
+      Add Task
+    </button>
+  </mat-toolbar>
+</div>
+<div class="tableContainer">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Task Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="task">
+    <th mat-header-cell *matHeaderCellDef> Task </th>
+    <td mat-cell *matCellDef="let element"> {{element.task}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="completionTime">
+    <th mat-header-cell *matHeaderCellDef> Completion Time </th>
+    <td mat-cell *matCellDef="let element"> {{element.completionTime}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="dueDate">
+    <th mat-header-cell *matHeaderCellDef> Due Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.dueDate | date}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Done </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" (click)="deleteTask(element.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+     </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+
+

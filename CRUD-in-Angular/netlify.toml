@@ -1,0 +1,17 @@
+[build]
+publish = "dist/crud-in-angular"
+command = "ng build"
+
+[dev]
+  command = "json-server --watch db.json"
+  publish = "dist/crud-in-angular"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+  [functions]
+  external_node_modules = [
+    "json-server",
+  ]
